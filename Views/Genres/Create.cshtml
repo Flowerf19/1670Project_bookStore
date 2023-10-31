@@ -1,0 +1,25 @@
+﻿@model _1670Project.Models.Genre
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row">
+    <div class="col-md-4">
+        <h4 class="pb-10">Genre</h4>
+        <form asp-action="Create" class="w-40">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="input-container">
+                <label asp-for="Type" class="w-40"></label>
+                <input asp-for="Type" class="input" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="input-container">
+                <input type="submit" value="Create" class="btn btn-sec" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-danger">Back to List</a>
+</div>

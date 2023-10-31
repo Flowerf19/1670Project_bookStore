@@ -1,0 +1,95 @@
+﻿@model _1670Project.Models.Form.BookGenreViewModel
+@{
+    ViewData["Title"] = "Index";
+    string username = User.Identity.Name;
+    Layout = "_Layout";
+}
+
+@if (!string.IsNullOrEmpty(username))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-sec">Create New</a>
+    </p>
+    <table class="table tableManager">
+        <thead>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Book Cover</th>
+        <th>Price</th>
+        <th>Release Date</th>
+        <th>Date Added</th>
+        <th>Genre</th>
+        <th>Book Number</th>
+        <th>Actions</th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Books)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author)
+                    </td>
+                    <td>
+                        <img src="@item.ImageUrl" alt="Book Cover" width="100" height="150">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateAdded)
+                    </td>
+                    <td>
+                        @{
+                            var genre = Model.Genres.FirstOrDefault(g => g.Id == item.GenreId);
+                            if (genre != null)
+                            {
+                                @genre.Type
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookNumber)
+                    </td>
+                    <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-default">Edit</a> 
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <section class="search-bar">
+        <form method="get" asp-action="Index">
+            <input type="text" name="term" placeholder="Search by Title">
+            <button type="submit"><i class="fa fa-search"></i></button>
+            <a class="btn btn-default" asp-action="Index" asp-controller="Home">All</a>
+        </form>
+    </section>
+        <section class="Books">
+            @foreach (var book in Model.Books)
+            {
+            <div class="Book-card">
+
+                    <div class="Book-image">
+                        <img src="@book.ImageUrl" alt="@book.Title">
+                    </div>
+                    <div class="Book-info">
+                        <h4>@book.Title</h4>
+                        <h4>@book.Price</h4>
+                        <h4>@book.ReleaseDate</h4>
+                    </div>
+                    <a asp-action="Details" asp-route-id="@book.Id" class="viewProduct">View</a>
+                    <a asp-action="addCart" asp-controller="Cart" asp-route-id="@book.Id" class="add">Add to Cart</a>
+                </div>
+            }
+        </section>
+}

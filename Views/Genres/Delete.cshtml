@@ -1,0 +1,23 @@
+﻿@model _1670Project.Models.Genre
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <div class="w-40">
+        <h2 class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </h2>
+        <h3 class="col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </h3>
+    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <a class="btn btn-danger" asp-controller="Genres" asp-action="Index">List Genres</a>
+            <input type="submit" value="Delete" class="btn btn-sec" />
+        </div>
+    </form>
+</div>

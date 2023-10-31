@@ -1,0 +1,19 @@
+﻿@model _1670Project.Models.Book
+@{
+}
+<div class="movie-detail w-80 m-auto">
+    <div class="img-container">
+        <img alt="image" src="@Model.ImageUrl">
+    </div>
+
+    <div class="detail-container">
+        <h3>@Model.Title</h3>
+        <h4>@Model.Author</h4>
+        <h4>@Model.ReleaseDate</h4>
+        <h4>@Model.Price</h4>
+        <h4>@Model.BookNumber</h4>
+    </div>
+</div>
+<div class="w-80 m-auto">
+    <a href="/Home/Index" class="btn btn-default">Back</a>
+</div>
